@@ -38,6 +38,6 @@ def create_appjs(resource, resources, app_js_file):
             string_to_insert_after, new_states, 1)
         with open(app_js_file, 'w') as new_file:
             new_file.write(new_filedata)
-            print("Routes added to app.js for ", resources)
+            print(("Routes added to app.js for ", resources))
     else:
         raise AppjsError()

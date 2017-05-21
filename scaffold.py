@@ -6,10 +6,10 @@ import subprocess
 import json
 import yaml
 import inflect
-from scaffold.custom_fields import *
-from scaffold.modules.replace_string import replace_string, \
+from .scaffold.custom_fields import *
+from .scaffold.modules.replace_string import replace_string, \
 new_route_string, menu_string, js_src_string, test_script_string, conf_js_string
-from scaffold.modules.errors import BlueprintError
+from .scaffold.modules.errors import BlueprintError
 
 blueprint_file = 'app/__init__.py'
 test_script = 'tests.bash'
@@ -151,7 +151,7 @@ def register_blueprints():
             string_to_insert_after, new_blueprint, 1)
         with open(blueprint_file, 'w') as new_file:
             new_file.write(new_filedata)
-            print("Registered Blueprints for ", resources)
+            print(("Registered Blueprints for ", resources))
     else:
         raise BlueprintError()
 
@@ -179,7 +179,7 @@ with open(yaml_file, "r") as file:
 
     yaml_data = yaml.load(file)
 
-    for module, fields in yaml_data.items():
+    for module, fields in list(yaml_data.items()):
             # make module name plural
         resource, resources = make_plural(module)
 
@@ -384,7 +384,7 @@ with open(yaml_file, "r") as file:
             try:
                 os.makedirs(angular_dir)
                 generate_files(module_dir, angular_dir)
-                print('{} created successfully'.format(module_dir))
+                print(('{} created successfully'.format(module_dir)))
                 register_blueprints()
                 # Update routes in app.js
                 replace_string(

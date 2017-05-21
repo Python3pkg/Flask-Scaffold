@@ -77,7 +77,7 @@ class GetUpdateDeleteUser(Resource):
         try:
             schema.validate(raw_dict)
             request_dict = raw_dict['data']['attributes']
-            for key, value in request_dict.items():
+            for key, value in list(request_dict.items()):
                 setattr(user, key, value)           
             user.update()
             return self.get(id)

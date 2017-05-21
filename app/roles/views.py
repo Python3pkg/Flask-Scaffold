@@ -74,7 +74,7 @@ class GetUpdateDeleteRole(Resource):
         try:
             schema.validate(raw_dict)
             request_dict = raw_dict['data']['attributes']
-            for key, value in request_dict.items():
+            for key, value in list(request_dict.items()):
                 setattr(role, key, value)
 
             role.update()

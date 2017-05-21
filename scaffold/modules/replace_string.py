@@ -64,7 +64,7 @@ def replace_string(resource, resources, file, string_to_insert_after, new_string
             string_to_insert_after, new_string, 1)
         with open(file, 'w', encoding = "utf-8") as new_file:
             new_file.write(new_filedata)
-            print("Updated", file)
+            print(("Updated", file))
     else:
         error_msg = """Unable to replace {string_to_insert_after}, with {new_string}
                       in file {file} """.format(string_to_insert_after=string_to_insert_after, new_string=new_string,

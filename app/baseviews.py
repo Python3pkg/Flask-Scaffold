@@ -169,11 +169,11 @@ class ForgotPassword(Resource):
             return response
 
         try:
-            print(request.headers.get('Authorization'))
+            print((request.headers.get('Authorization')))
             payload = parse_token(request)
             user_id = payload['sub']
             user = Users.query.get_or_404(user_id)
-            print(request.data)
+            print((request.data))
             raw_dict = request.get_json(force=True)
             request_dict = raw_dict['data']['attributes']
 
